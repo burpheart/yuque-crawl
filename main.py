@@ -13,13 +13,6 @@ import argparse
 tset = []
 
 
-def get_book(book_id):
-    docsdata = requests.get('https://www.yuque.com/api/docs?book_id=385268')
-    docsjson = json.loads(docsdata.content)
-    for doc in docsjson['data']:
-        print(doc)
-
-
 def save_page(book_id, sulg, path):
     docsdata = requests.get(
         'https://www.yuque.com/api/docs/' + sulg + '?book_id=' + book_id + '&merge_dynamic_data=false&mode=markdown')
