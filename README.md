@@ -17,5 +17,5 @@ https://www.python.org/downloads/
 `python3 main.py 语雀文档地址`
 
 demo：
-python3 main.py https://www.yuque.com/burpheart/phpaudit
+`python3 main.py https://www.yuque.com/burpheart/phpaudit`
 
