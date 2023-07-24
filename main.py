@@ -37,8 +37,9 @@ def get_book(url="https://www.yuque.com/burpheart/phpaudit"):
     prename = ""
     if (os.path.exists("download/" + str(docsjson['book']['id'])) == False):
         os.makedirs("download/" + str(docsjson['book']['id']))
+
     for doc in docsjson['book']['toc']:
-        if (doc['type'] == 'TITLE'):
+        if (doc['type'] == 'TITLE' or doc['child_uuid']!= ''):
             filename = ''
             list[doc['uuid']] = {'0': doc['title'], '1': doc['parent_uuid']}
             uuid = doc['uuid']
