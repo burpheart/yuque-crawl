@@ -11,9 +11,17 @@ import urllib.parse
 
 tset = []
 
+def get_session():
+    session = requests.session()
+    with open('cookie.txt', 'r') as f:
+        for line in f:
+            name, value = line.strip().split('=', 1)
+            session.cookies.set(name, value)
+    return session
 
 def save_page(book_id, sulg, path):
-    docsdata = requests.get(
+    session = get_session()
+    docsdata = session.get(
         'https://www.yuque.com/api/docs/' + sulg + '?book_id=' + book_id + '&merge_dynamic_data=false&mode=markdown')
     if (docsdata.status_code != 200):
         print("文档下载失败 页面可能被删除 ", book_id, sulg, docsdata.content)
@@ -26,7 +34,13 @@ def save_page(book_id, sulg, path):
 
 
 def get_book(url="https://www.yuque.com/burpheart/phpaudit"):
-    docsdata = requests.get(url)
+    session = get_session()
+    with open('cookie.txt', 'r') as f:
+        for line in f:
+            name, value = line.strip().split('=',1)
+            session.cookies.set(name, value)
+
+    docsdata = session.get(url)
     data = re.findall(r"decodeURIComponent\(\"(.+)\"\)\);", docsdata.content.decode('utf-8'))
     docsjson = json.loads(urllib.parse.unquote(data[0]))
     test = []
