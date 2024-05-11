@@ -12,9 +12,11 @@ https://www.python.org/downloads/
 执行安装运行模块
 `pip install requests`
 
-执行抓取：
-
+单线程版本：
 `python3 main.py 语雀文档地址`
+
+多线程版本：
+`python3 main2.py 语雀文档地址`
 
 demo：
 `python3 main.py https://www.yuque.com/burpheart/phpaudit`
